@@ -22,6 +22,9 @@ export default class Box extends Component {
 
   async componentDidMount() {
     const box = await AsyncStorage.getItem('@RocketBox:box');
+
+    this.subscribeToNewFiles(box);
+	
     const response = await api.get(`boxes/${box}`);
 
     this.setState({ box: response.data });
